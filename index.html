@@ -1,0 +1,133 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CK Creatives Blog</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    header {
+      background-color: #222;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #333;
+      overflow: hidden;
+    }
+
+    nav a {
+      float: left;
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      background-color: #575757;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+      background-color: white;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #222;
+      color: white;
+    }
+
+    .search-bar {
+      margin-bottom: 20px;
+    }
+
+    .post {
+      margin-bottom: 30px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+    }
+
+    .download-btn {
+      display: inline-block;
+      margin-top: 10px;
+      background-color: #007BFF;
+      color: white;
+      padding: 10px;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .download-btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to CK Creatives</h1>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <div class="container">
+    <div class="search-bar">
+      <input type="text" id="search" placeholder="Search posts..." style="width: 100%; padding: 10px;" onkeyup="searchPosts()">
+    </div>
+
+    <div class="post">
+      <h2>Welcome to CK Creatives Blog!</h2>
+      <p>
+        We are excited to have you here! This blog is a space for creatives, dreamers, and storytellers. Here you’ll find inspiring content, creative ideas, and personal stories. Whether you're a writer, designer, artist, or just love creative energy — this is your new home.
+      </p>
+      <p>
+        Expect regular posts about blogging, tech, design, social media trends, and motivation. Make sure to bookmark and share with your friends!
+      </p>
+      <a href="#" class="download-btn" download>Download Our Intro</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>Email: <a href="mailto:kyalocaleb256@gmail.com" style="color: #90caf9;">kyalocaleb256@gmail.com</a></p>
+    <p>WhatsApp: <a href="https://wa.me/254727454733" target="_blank" style="color: #90caf9;">+254727454733</a></p>
+    <p>&copy; 2025 CK Creatives</p>
+  </footer>
+
+  <script>
+    function searchPosts() {
+      const input = document.getElementById("search").value.toLowerCase();
+      const posts = document.getElementsByClassName("post");
+
+      for (let i = 0; i < posts.length; i++) {
+        const post = posts[i];
+        if (post.textContent.toLowerCase().includes(input)) {
+          post.style.display = "";
+        } else {
+          post.style.display = "none";
+        }
+      }
+    }
+  </script>
+</body>
+</html>
+
+
+---
