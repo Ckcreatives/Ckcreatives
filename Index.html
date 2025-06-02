@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CK Creatives Blog</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    header {
+      background-color: #222;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #333;
+      overflow: hidden;
+    }
+
+    nav a {
+      float: left;
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 20px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #575757;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+
+    section {
+      background: white;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Home page styles */
+    #home h2 {
+      font-size: 2.5em;
+      color: #222;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    #home p {
+      font-size: 1.2em;
+      color: #555;
+      max-width: 600px;
+      margin: 0 auto 30px auto;
+      text-align: center;
+    }
+
+    #home img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      margin: 0 auto 40px auto;
+    }
+
+    #home h3 {
+      color: #222;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #222;
+      padding-bottom: 5px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #home ul {
+      list-style-type: none;
+      padding: 0;
+      max-width: 700px;
+      margin: 0 auto 40px auto;
+      color: #444;
+    }
+
+    #home ul li {
+      margin-bottom: 15px;
+    }
+
+    #home ul li a {
+      font-weight: bold;
+      font-size: 1.1em;
+      color: #0077cc;
+      text-decoration: none;
+    }
+
+    #home ul li a:hover {
+      text-decoration: underline;
+    }
+
+    #home ul li p {
+      margin: 5px 0 0 0;
+    }
+
+    #home input[type="text"] {
+      padding: 10px 15px;
+      width: 80%;
+      max-width: 400px;
+      border: 1px solid #ccc;
+      border-radius: 25px;
+      font-size: 1em;
+      display: block;
+      margin: 0 auto 30px auto;
+    }
+
+    #home a.cta-btn {
+      display: inline-block;
+      background-color: #0077cc;
+      color: white;
+      padding: 12px 30px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1em;
+      text-align: center;
+      margin: 0 auto 20px auto;
+      display: block;
+      max-width: 200px;
+    }
+
+    #home a.cta-btn:hover {
+      background-color: #005fa3;
+    }
+
+    /* About, Blog, Contact styles */
+    h2 {
+      color: #222;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    #blog ul {
+      list-style-type: none;
+      padding: 0;
+      max-width: 700px;
+      margin: 0 auto;
+      color: #444;
+    }
+
+    #blog ul li {
+      margin-bottom: 15px;
+    }
+
+    #blog ul li strong {
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+
+    #blog ul li p {
+      margin: 5px 0 0 0;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #222;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    /* Search and Download container */
+    .search-download {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .search-download input[type="text"] {
+      padding: 8px;
+      width: 70%;
+      max-width: 300px;
+      margin-right: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .search-download a.download-btn {
+      background-color: #333;
+      color: #fff;
+      padding: 8px 12px;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .search-download a.download-btn:hover {
+      background-color: #575757;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      nav a {
+        float: none;
+        width: 100%;
+        text-align: left;
+        padding-left: 20px;
+      }
+
+      #home input[type="text"] {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>CK Creatives</h1>
+    <p>Creative minds. Powerful stories.</p>
+  </header>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#blog">Blog</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <div class="container">
+    <div class="search-download">
+      <input type="text" placeholder="Search blog..." />
+      <a href="ck_creatives_blog_with_post.html" class="download-btn" download>Download Website</a>
+    </div>
+
+    <section id="home">
+      <h2>Welcome to CK Creatives</h2>
+      <p>
+        A home for storytellers, dreamers, and creative minds. Dive into stories
+        that inspire, motivate, and ignite imagination.
+      </p>
+      <img
+        src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80"
+        alt="Creative writing"
+      />
+      <h3>Featured Posts</h3>
+      <ul>
+        <li>
+          <a href="#blog">Welcome to CK Creatives!</a>
+          <p>
+            Discover what this platform is all about and how it can inspire your
+            creative journey.
+          </p>
+        </li>
+        <li>
+          <a href="#blog">Why Storytelling Matters</a>
+          <p>
+            A deep dive into the power of narratives in shaping our lives and
+            perspectives.
+          </p>
+        </li>
+        <li>
+          <a href="#blog">How to Start a Creative Journey</a>
+          <p>
+            Practical steps to help you begin your creative path with confidence
+            and passion.
+          </p>
+        </li>
+      </ul>
+      <input type="text" placeholder="Search blog..." />
+      <a href="#blog" class="cta-btn">Explore More Blogs</a>
+    </section>
+
+    <section id="about">
+      <h2>About Us</h2>
+      <p>
+        CK Creatives is a digital space for writers, dreamers, and thinkers. We
+        believe in the power of storytelling to transform lives and spark action.
+      </p>
+    </section>
+
+    <section id="blog">
+      <h2>Latest Blog Posts</h2>
+      <ul>
+        <li>
+          <strong>Welcome to CK Creatives!</strong> - We're excited to have you
+          here. This platform is dedicated to passionate storytellers, writers,
+          and creatives who want to inspire and share knowledge. Expect powerful
+          articles, creative writing, life lessons, and more from our diverse
+          contributors.
+        </li>
+        <li>
+          <strong>How to Start a Creative Journey</strong> - Discover practical
+          steps to begin creating with confidence.
+        </li>
+        <li>
+          <strong>Why Storytelling Matters</strong> - A deep dive into the power
+          of narratives in everyday life.
+        </li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <p>Email: kyalocaleb256@gmail.com</p>
+      <p>WhatsApp: +254727454733</p>
+      <p>Twitter: @ck_creatives</p>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 CK Creatives. All rights reserved.</p>
+  </footer>
+</body>
+
+</html>
