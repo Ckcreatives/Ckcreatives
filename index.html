@@ -1,124 +1,118 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CK Creatives Blog</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+    header, footer { background: #222; color: white; text-align: center; padding: 1em 0; }
+    nav { background: #333; overflow: hidden; }
+    nav a { float: left; color: white; padding: 14px 16px; text-decoration: none; }
+    nav a:hover { background: #575757; }
+    .container { max-width: 800px; margin: auto; background: white; padding: 20px; }
+    .post { border-bottom: 1px solid #ccc; margin-bottom: 20px; padding-bottom: 10px; }
+    .search-bar input { width: 100%; padding: 10px; margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+  <header><h1>CK Creatives Blog</h1></header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="dashboard.html">Dashboard</a>
+  </nav>
+  <div class="container">
+    <div class="search-bar">
+      <input type="text" id="search" placeholder="Search posts..." onkeyup="searchPosts()">
+    </div>
+    <div id="posts"></div>
+  </div>
+  <footer>
+    <p>Email: <a href="mailto:kyalocaleb256@gmail.com" style="color: #90caf9;">kyalocaleb256@gmail.com</a></p>
+    <p>WhatsApp: <a href="https://wa.me/254727454733" target="_blank" style="color: #90caf9;">+254727454733</a></p>
+    <p>&copy; 2025 CK Creatives</p>
+  </footer>
+  <script>
+    function loadPosts() {
+      const postsDiv = document.getElementById('posts');
+      const posts = JSON.parse(localStorage.getItem('ck_posts')) || [];
+      postsDiv.innerHTML = posts.map(post => `
+        <div class="post">
+          <h2>${post.title}</h2>
+          <p>${post.content}</p>
+        </div>
+      `).join('');
+    }
+
+    function searchPosts() {
+      const input = document.getElementById("search").value.toLowerCase();
+      const posts = document.getElementsByClassName("post");
+      for (let post of posts) {
+        post.style.display = post.textContent.toLowerCase().includes(input) ? '' : 'none';
+      }
+    }
+
+    loadPosts();
+  </script>
+</body>
+</html>
+
+<!-- dashboard.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Spin & Win - CK Creatives</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - CK Creatives</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #fff;
-      text-align: center;
-      padding: 40px 10px;
-      color: #333;
-    }
-
-    h1 {
-      font-size: 2em;
-      margin-bottom: 10px;
-      color: #0066cc;
-    }
-
-    #wheel {
-      width: 320px;
-      height: 320px;
-      border-radius: 50%;
-      border: 10px solid #444;
-      margin: 40px auto 20px;
-      position: relative;
-      overflow: hidden;
-      transition: transform 5s ease-out;
-    }
-
-    .segment {
-      width: 50%;
-      height: 50%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform-origin: 0% 0%;
-    }
-
-    .segment > div {
-      transform: skewY(30deg) rotate(30deg);
-      padding: 20px;
-      color: white;
-      font-weight: bold;
-      font-size: 16px;
-    }
-
-    #spinBtn {
-      padding: 15px 35px;
-      font-size: 18px;
-      background: #0066cc;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    #spinBtn:hover {
-      background: #004080;
-    }
-
-    #result {
-      margin-top: 30px;
-      font-size: 20px;
-      font-weight: bold;
-      color: #2d862d;
-    }
-
-    .pointer {
-      width: 0;
-      height: 0;
-      border-left: 25px solid transparent;
-      border-right: 25px solid transparent;
-      border-bottom: 35px solid red;
-      position: absolute;
-      top: -35px;
-      left: calc(50% - 25px);
-    }
+    body { font-family: Arial; background: #f4f4f4; padding: 20px; }
+    #login-section, #dashboard-section { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 5px; }
+    input, textarea { width: 100%; padding: 10px; margin: 10px 0; }
+    button { padding: 10px 15px; background: #333; color: white; border: none; cursor: pointer; }
+    button:hover { background: #555; }
   </style>
 </head>
 <body>
+  <div id="login-section">
+    <h2>Enter Dashboard Password</h2>
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="checkPassword()">Login</button>
+  </div>
 
-  <h1>🎡 Spin & Win 🎉</h1>
-  <p>Zungusha gurudumu ushinde zawadi kutoka CK Creatives!</p>
-
-  <div class="pointer"></div>
-  <div id="wheel"></div>
-  <button id="spinBtn">SPIN NOW</button>
-  <div id="result"></div>
+  <div id="dashboard-section" style="display:none;">
+    <h2>Create New Post</h2>
+    <input type="text" id="title" placeholder="Post Title">
+    <textarea id="content" rows="6" placeholder="Post Content"></textarea>
+    <button onclick="addPost()">Publish Post</button>
+  </div>
 
   <script>
-    const segments = ["Free Logo", "10% Off", "Try Again", "Free Consult", "20% Off", "Lucky CK Gift"];
-    const colors = ["#f44336", "#2196f3", "#4caf50", "#ff9800", "#9c27b0", "#00bcd4"];
-    const wheel = document.getElementById("wheel");
+    const correctPassword = "12711180ck.#";
 
-    segments.forEach((text, i) => {
-      const seg = document.createElement("div");
-      seg.className = "segment";
-      seg.style.transform = `rotate(${i * 60}deg) skewY(-30deg)`;
-      seg.style.background = colors[i];
-      seg.innerHTML = `<div>${text}</div>`;
-      wheel.appendChild(seg);
-    });
+    function checkPassword() {
+      const input = document.getElementById("password").value;
+      if (input === correctPassword) {
+        document.getElementById("login-section").style.display = "none";
+        document.getElementById("dashboard-section").style.display = "block";
+      } else {
+        alert("Wrong password!");
+      }
+    }
 
-    const spinBtn = document.getElementById("spinBtn");
-    const result = document.getElementById("result");
+    function addPost() {
+      const title = document.getElementById("title").value;
+      const content = document.getElementById("content").value;
+      if (!title || !content) return alert("Fill all fields");
 
-    spinBtn.onclick = () => {
-      const random = Math.floor(Math.random() * 6);
-      const angle = 360 * 5 + (360 - random * 60 - 30);
-      wheel.style.transform = `rotate(${angle}deg)`;
+      const posts = JSON.parse(localStorage.getItem("ck_posts")) || [];
+      posts.unshift({ title, content });
+      localStorage.setItem("ck_posts", JSON.stringify(posts));
 
-      result.innerText = "";
-      setTimeout(() => {
-        result.innerText = "🎉 You got: " + segments[random];
-      }, 5200);
-    };
+      alert("Post published!");
+      document.getElementById("title").value = "";
+      document.getElementById("content").value = "";
+    }
   </script>
-
 </body>
 </html>
