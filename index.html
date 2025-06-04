@@ -1,118 +1,56 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CK Creatives Blog</title>
-  <style>
-    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
-    header, footer { background: #222; color: white; text-align: center; padding: 1em 0; }
-    nav { background: #333; overflow: hidden; }
-    nav a { float: left; color: white; padding: 14px 16px; text-decoration: none; }
-    nav a:hover { background: #575757; }
-    .container { max-width: 800px; margin: auto; background: white; padding: 20px; }
-    .post { border-bottom: 1px solid #ccc; margin-bottom: 20px; padding-bottom: 10px; }
-    .search-bar input { width: 100%; padding: 10px; margin-bottom: 20px; }
-  </style>
-</head>
-<body>
-  <header><h1>CK Creatives Blog</h1></header>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="dashboard.html">Dashboard</a>
-  </nav>
-  <div class="container">
-    <div class="search-bar">
-      <input type="text" id="search" placeholder="Search posts..." onkeyup="searchPosts()">
-    </div>
-    <div id="posts"></div>
-  </div>
-  <footer>
-    <p>Email: <a href="mailto:kyalocaleb256@gmail.com" style="color: #90caf9;">kyalocaleb256@gmail.com</a></p>
-    <p>WhatsApp: <a href="https://wa.me/254727454733" target="_blank" style="color: #90caf9;">+254727454733</a></p>
-    <p>&copy; 2025 CK Creatives</p>
-  </footer>
-  <script>
-    function loadPosts() {
-      const postsDiv = document.getElementById('posts');
-      const posts = JSON.parse(localStorage.getItem('ck_posts')) || [];
-      postsDiv.innerHTML = posts.map(post => `
-        <div class="post">
-          <h2>${post.title}</h2>
-          <p>${post.content}</p>
-        </div>
-      `).join('');
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CK Creatives</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="favicon.ico" />
+  </head>
+  <body class="bg-white text-gray-800 font-sans">
 
-    function searchPosts() {
-      const input = document.getElementById("search").value.toLowerCase();
-      const posts = document.getElementsByClassName("post");
-      for (let post of posts) {
-        post.style.display = post.textContent.toLowerCase().includes(input) ? '' : 'none';
-      }
-    }
+    <!-- Navigation -->
+    <header class="bg-purple-700 text-white shadow">
+      <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold">CK Creatives</h1>
+        <nav class="space-x-4">
+          <a href="#" class="hover:text-yellow-300">Home</a>
+          <a href="#about" class="hover:text-yellow-300">About</a>
+          <a href="#contact" class="hover:text-yellow-300">Contact</a>
+        </nav>
+      </div>
+    </header>
 
-    loadPosts();
-  </script>
-</body>
-</html>
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-purple-700 to-indigo-600 text-white text-center py-24 px-6">
+      <h2 class="text-4xl font-bold mb-4">We Bring Ideas to Life</h2>
+      <p class="text-xl mb-6 max-w-xl mx-auto">Creative designs, digital solutions, and innovative strategies to grow your brand online.</p>
+      <a href="#contact" class="bg-white text-purple-700 font-semibold px-6 py-3 rounded-full shadow hover:bg-gray-200 transition">Work With Us</a>
+    </section>
 
-<!-- dashboard.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard - CK Creatives</title>
-  <style>
-    body { font-family: Arial; background: #f4f4f4; padding: 20px; }
-    #login-section, #dashboard-section { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 5px; }
-    input, textarea { width: 100%; padding: 10px; margin: 10px 0; }
-    button { padding: 10px 15px; background: #333; color: white; border: none; cursor: pointer; }
-    button:hover { background: #555; }
-  </style>
-</head>
-<body>
-  <div id="login-section">
-    <h2>Enter Dashboard Password</h2>
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="checkPassword()">Login</button>
-  </div>
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 max-w-4xl mx-auto text-center">
+      <h3 class="text-3xl font-bold mb-6">Who We Are</h3>
+      <p class="text-lg text-gray-700 leading-relaxed">
+        CK Creatives is a digital studio focused on delivering top-tier web, branding, and design services. We work with individuals, startups, and businesses to build powerful digital presence.
+      </p>
+    </section>
 
-  <div id="dashboard-section" style="display:none;">
-    <h2>Create New Post</h2>
-    <input type="text" id="title" placeholder="Post Title">
-    <textarea id="content" rows="6" placeholder="Post Content"></textarea>
-    <button onclick="addPost()">Publish Post</button>
-  </div>
+    <!-- Contact Section -->
+    <section id="contact" class="bg-gray-100 py-20 px-6 text-center">
+      <h3 class="text-3xl font-bold mb-6">Get In Touch</h3>
+      <p class="text-gray-700 mb-4">Email us at <a href="mailto:ckcreatives@example.com" class="text-purple-700 font-semibold">ckcreatives@example.com</a></p>
+      <div class="space-x-4 mt-6">
+        <a href="#" class="text-purple-700 hover:underline">Instagram</a>
+        <a href="#" class="text-purple-700 hover:underline">Twitter</a>
+        <a href="#" class="text-purple-700 hover:underline">Facebook</a>
+      </div>
+    </section>
 
-  <script>
-    const correctPassword = "12711180ck.#";
-
-    function checkPassword() {
-      const input = document.getElementById("password").value;
-      if (input === correctPassword) {
-        document.getElementById("login-section").style.display = "none";
-        document.getElementById("dashboard-section").style.display = "block";
-      } else {
-        alert("Wrong password!");
-      }
-    }
-
-    function addPost() {
-      const title = document.getElementById("title").value;
-      const content = document.getElementById("content").value;
-      if (!title || !content) return alert("Fill all fields");
-
-      const posts = JSON.parse(localStorage.getItem("ck_posts")) || [];
-      posts.unshift({ title, content });
-      localStorage.setItem("ck_posts", JSON.stringify(posts));
-
-      alert("Post published!");
-      document.getElementById("title").value = "";
-      document.getElementById("content").value = "";
-    }
-  </script>
-</body>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white text-center py-6">
+      <p>&copy; 2025 CK Creatives. All rights reserved.</p>
+    </footer>
+    
+  </body>
 </html>
