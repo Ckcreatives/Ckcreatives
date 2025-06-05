@@ -1,119 +1,83 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CK Creatives Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CK Dashboard</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
-    header, footer { background: #222; color: white; text-align: center; padding: 1em 0; }
-    nav { background: #333; overflow: hidden; }
-    nav a { float: left; color: white; padding: 14px 16px; text-decoration: none; }
-    nav a:hover { background: #575757; }
-    .container { max-width: 800px; margin: auto; background: white; padding: 20px; }
-    .post { border-bottom: 1px solid #ccc; margin-bottom: 20px; padding-bottom: 10px; }
-    .search-bar input { width: 100%; padding: 10px; margin-bottom: 20px; }
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2em;
+      background-color: #f5f5f5;
+    }
+    .hidden { display: none; }
+    textarea, input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-family: monospace;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+    .preview {
+      white-space: pre-wrap;
+      background: #fff;
+      padding: 10px;
+      border: 1px solid #ccc;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
-  <header><h1>CK Creatives Blog</h1></header>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="dashboard.html">Dashboard</a>
-  </nav>
-  <div class="container">
-    <div class="search-bar">
-      <input type="text" id="search" placeholder="Search posts..." onkeyup="searchPosts()">
-    </div>
-    <div id="posts"></div>
-  </div>
-  <footer>
-    <p>Email: <a href="mailto:kyalocaleb256@gmail.com" style="color: #90caf9;">kyalocaleb256@gmail.com</a></p>
-    <p>WhatsApp: <a href="https://wa.me/254727454733" target="_blank" style="color: #90caf9;">+254727454733</a></p>
-    <p>&copy; 2025 CK Creatives</p>
-  </footer>
-  <script>
-    function loadPosts() {
-      const postsDiv = document.getElementById('posts');
-      const posts = JSON.parse(localStorage.getItem('ck_posts')) || [];
-      postsDiv.innerHTML = posts.map(post => `
-        <div class="post">
-          <h2>${post.title}</h2>
-          <p>${post.content}</p>
-        </div>
-      `).join('');
-    }
 
-    function searchPosts() {
-      const input = document.getElementById("search").value.toLowerCase();
-      const posts = document.getElementsByClassName("post");
-      for (let post of posts) {
-        post.style.display = post.textContent.toLowerCase().includes(input) ? '' : 'none';
-      }
-    }
-
-    loadPosts();
-  </script>
-</body>
-</html>
-
-<!-- dashboard.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard - CK Creatives</title>
-  <style>
-    body { font-family: Arial; background: #f4f4f4; padding: 20px; }
-    #login-section, #dashboard-section { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 5px; }
-    input, textarea { width: 100%; padding: 10px; margin: 10px 0; }
-    button { padding: 10px 15px; background: #333; color: white; border: none; cursor: pointer; }
-    button:hover { background: #555; }
-  </style>
-</head>
-<body>
   <div id="login-section">
-    <h2>Enter Dashboard Password</h2>
-    <input type="password" id="password" placeholder="Password">
+    <h2>Login</h2>
+    <input type="password" id="password" placeholder="Enter password"/>
     <button onclick="checkPassword()">Login</button>
+    <p id="login-error" style="color: red;"></p>
   </div>
 
-  <div id="dashboard-section" style="display:none;">
+  <div id="dashboard" class="hidden">
     <h2>Create New Post</h2>
-    <input type="text" id="title" placeholder="Post Title">
-    <textarea id="content" rows="6" placeholder="Post Content"></textarea>
-    <button onclick="addPost()">Publish Post</button>
+    <input type="text" id="title" placeholder="Post Title"/>
+    <textarea id="content" rows="10" placeholder="Write your post here (Markdown supported)"></textarea>
+    <button onclick="previewPost()">Preview</button>
+    <button onclick="downloadPost()">Download .md</button>
+    <div class="preview" id="preview"></div>
   </div>
 
   <script>
-    const correctPassword = "12711180ck.#";
+    const PASSWORD = "ck1234"; // Change this to your preferred password
 
     function checkPassword() {
       const input = document.getElementById("password").value;
-      if (input === correctPassword) {
-        document.getElementById("login-section").style.display = "none";
-        document.getElementById("dashboard-section").style.display = "block";
+      if (input === PASSWORD) {
+        document.getElementById("login-section").classList.add("hidden");
+        document.getElementById("dashboard").classList.remove("hidden");
       } else {
-        alert("Wrong password!");
+        document.getElementById("login-error").textContent = "Wrong password!";
       }
     }
 
-    function addPost() {
+    function previewPost() {
       const title = document.getElementById("title").value;
       const content = document.getElementById("content").value;
-      if (!title || !content) return alert("Fill all fields");
+      const preview = `# ${title}\n\n${content}`;
+      document.getElementById("preview").textContent = preview;
+    }
 
-      const posts = JSON.parse(localStorage.getItem("ck_posts")) || [];
-      posts.unshift({ title, content });
-      localStorage.setItem("ck_posts", JSON.stringify(posts));
-
-      alert("Post published!");
-      document.getElementById("title").value = "";
-      document.getElementById("content").value = "";
+    function downloadPost() {
+      const title = document.getElementById("title").value.trim().replace(/\s+/g, "-").toLowerCase();
+      const content = `# ${document.getElementById("title").value}\n\n${document.getElementById("content").value}`;
+      const blob = new Blob([content], { type: "text/markdown" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = `${title || "post"}.md`;
+      link.click();
     }
   </script>
+
 </body>
 </html>
-
